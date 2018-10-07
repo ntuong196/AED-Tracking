@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- Header -->
+<!-- ------------------------------>
+<div class="navbar navbar-expand-lg navbar-light bg-faded">
+    <a class="navbar-brand logo" href="/" >
+        <img class="d-inline-block " src="/images/logo.png" alt="Steve Logo" width=80px> <a style="font-size: 20px; color: white;">AED Tracking</a>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text-center justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-link"></li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/">Home</a>
+            </li>
+            <li class="nav-link"></li>
+            <li class="nav-item">
+                <!-- Button trigger modal -->
+                <a class="nav-link text-white" data-toggle="modal" data-target="#guideModal">Guide</a>
+            </li>
+
+        </ul>
+
+
+        <div class="my-2 my-lg-0">
+            <a class="d-inline btn navbar-btn mr-sm-2 text-white btn-outline-secondary" >
+                <i class="far d-inline fa-lg fa-bookmark"></i>&nbsp;Notification
+            </a>
+            <a class="d-inline btn navbar-btn ml-2 text-white btn-outline-secondary" data-toggle="modal" data-target="#loginModal">
+                <i class="far fa-lg fa-user-circle d-inline "></i>&nbsp;Log Out
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guideModal">USE GUIDE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+            <div class="modal-body">
+                <h4>Login to system</h4>
+                <h4>View the list of AED</h4>
+                <h4>View AED details</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModal">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-sm-7 col-centered">
+        <div class="wizard-container">
+            <div class="card wizard-card" data-color="red" id="wizard">
+                <br>
+                <h1 class="text-center">AED Tracking</h1>
+                <p class="text-center">Monitoring all of the AED kits status</p>
+                <br>
+
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">AED Map</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">AED List</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Add User</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <br>
+                        <form class="form-inline">
+                          <div class="input-group w-100">
+                            <input id="searchInput" type="text" class=" controls form-control form-control-lg" placeholder="Enter serching location" >
+                            
+                          </div>
+                        </form>
+
+                        <div id="map"></div>
+                        
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <br>
+                        <form action="/api" method="post">
+
+                            <label >QUT Campus</label>
+                            <select name="campus" class="form-control">
+                                <option value="gp">Garden Point</option>
+                                <option value="kg">Kelvin Grove</option>
+                                <option value="cb">Caboolture</option> 
+                            </select>
+                            
+                            <label >AED ID</label>
+                            <select name="aed_id" class="form-control">
+                                <option value="gp01">Garden Point - 001</option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">View Detail</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
