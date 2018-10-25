@@ -4,8 +4,10 @@ const mongoose = require('mongoose'),
 const Aed = new Schema({
 	// _id: String,
 	aed_id: String,
-	origin_locate: String,
-	current_locate: [Number, Number]
+	discription: String,
+	origin_locate: [Number,Number],
+	current_locate: [Number, Number],
+	is_moving: Boolean
 })
 
 

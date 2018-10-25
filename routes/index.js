@@ -10,10 +10,18 @@ const mapClient = require('@google/maps').createClient({
   key: 'AIzaSyAK8MrWHM4riyD4HJ6M5pabVAs09scuLBU'
 })
 
+// Database
+const db = require('../models/database')
+
+const AED     = require('../models/aed');
+
+
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('index', { 
-        title: 'QUT AED Tracking'
+        title: 'QUT AED Tracking',
+        monitor: 1,
+        detail:0
     })
 })
 
@@ -21,20 +29,15 @@ router.get('/', function(req, res) {
 router.post('/',(req,res,next)=>{
     const id = req.body.aed_id
     res.render('index', {
-        title: 'QUT AED Tracking'
+        title: 'QUT AED Tracking',
+        monitor: 0,
+        detail:1
     })
 
     console.log(data)
     res.send(data)
 })
 
-/* GET AED info page. */
-router.get('/:aed_id', function(req, res) {
-    const aed_id = req.params.aed_id
-    res.render('index', { 
-        'title': 'QUT AED Tracking'
-    })
-})
 
 
 module.exports = router

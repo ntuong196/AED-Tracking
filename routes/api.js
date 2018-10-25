@@ -6,6 +6,12 @@ router = express.Router()
 const config = require('../models/config.js')
 
 // Database requirement
+const db = require('../models/database.js')
+
+// Schema
+const aed = require('../models/aed.js')
+
+const gp01 = new aed()
 
 /* POST home page. */
 router.post('/',(req,res,next)=>{
@@ -14,6 +20,9 @@ router.post('/',(req,res,next)=>{
 	res.send(data)
 })
 
+router.get('/', (req,res)=>{
+
+})
 
 
 module.exports = router
