@@ -16,6 +16,11 @@ const db = require('../models/database')
 const AED     = require('../models/aed');
 
 
+/* GET Signin page. */
+router.get('/signin', function (req, res) {
+    res.render("signin", { title: "QUT AED Tracking" });
+})
+
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('index', { 
