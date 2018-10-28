@@ -15,10 +15,15 @@ const db = require('../models/database')
 
 const AED     = require('../models/aed');
 
+/* GET Test page. */
+router.get('/test', function (req, res) {
+    res.render("test")
+})
+
 
 /* GET Signin page. */
 router.get('/signin', function (req, res) {
-    res.render("signin", { title: "QUT AED Tracking" });
+    res.render("signin", { title: "QUT AED Tracking" })
 })
 
 /* GET home page. */

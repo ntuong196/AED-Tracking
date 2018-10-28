@@ -1,19 +1,6 @@
 /* BASIC LOCATION SERVICES */
 //////////////////////////////////////////////////////////////////
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        console.log("Location service is not supported!")
-    }
-}
-function showPosition(position) {
-    currentLat = position.coords.latitude  
-    currentLong = position.coords.longitude 
-}
-
 var marker;
-
 
 var locations = [
         {lat: -27.4773824, lng: 153.0292242},
