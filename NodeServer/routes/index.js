@@ -24,9 +24,7 @@ router.get('/signin', function (req, res) {
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('index', { 
-        title: 'QUT AED Tracking',
-        monitor: 1,
-        detail:0
+        title: 'QUT AED Tracking'
     })
 })
 

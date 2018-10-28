@@ -12,17 +12,31 @@
     </head>
     <body>
         <%- include('./partial/header') %>
-        
+        <!-- MAP -->
         <div class="image-container" >
-            
-            
-            <% if (monitor) { %>
-                <!-- DISPLAY RESULTS FROM SERVICES SEARCH -->
-                <%- include('./partial/map') %>
-            <% }else if (detail) { %>
-                <!-- DISPLAY REVIEWS FOR SERVICES -->
-                <%- include('./partial/aed') %>
-            <% } %>
+            <div class="row">
+                <div class="col-sm-7 col-centered">
+                    <div class="wizard-container">
+                        <div class="card wizard-card" data-color="red" id="wizard">
+                            <br>
+                            <h1 class="text-center">AED Tracking</h1>
+                            <p class="text-center">Monitoring all of the AED kits status</p>
+                            <br>
+              
+                            <form class="form-inline">
+                                <div class="input-group w-100">
+                                    <input id="searchInput" type="text" class=" controls form-control form-control-lg" placeholder="Enter serching location">
+                        
+                                </div>
+                            </form>
+                        
+                            <!-- <div id="map"></div> -->
+                            <div id="imgmap"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <%- include('./partial/footer') %>
