@@ -148,13 +148,13 @@ npm start
 Open Web browser in address `localhost:3000/` to view the web page.
 
 <p align="center">
-  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/wiring.png">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/Signin.JPG">
 </p>
 
 Login with default username: `n9776001@qut.edu.au` and password: `toor@101`
 
 <p align="center">
-  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/campus_view.png">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/campus_view.PNG">
 </p>
 
 ---
