@@ -1,3 +1,13 @@
+<p align="center">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/NodeServer/public/images/logo.png">
+  
+  [![Build Status](https://travis-ci.org/angular/angular.svg?branch=master)](https://travis-ci.org/angular/angular)
+  [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06)](https://www.browserstack.com/automate/public-build/LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06)
+  [![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://www.npmjs.com/@angular/core)
+</p>
+
+
+
 # QUT AED Tracking
 ---
 ### Discription:
@@ -10,11 +20,11 @@ Goal: Implementing the tracking device and monitoring web app for AED kit of QUT
 
 Project components:
 
-| Component       | Are                                     | Cost  |
-| ---------------:|:---------------------------------------:| -----:|
-| Sensor          | Raspberry Pi 3 Model B + NEO 6M GPS Mod | $1600 |
-| API             | NodeJS + MongoDB                        |  Free |
-| Web Application | Node + Express + EJS                    |  Free |
+| Component       | Are                                        | Cost  |
+| ---------------:|:------------------------------------------:| -----:|
+| Sensor          | Raspberry Pi 3 Model B + NEO 6M GPS Module |  $100 |
+| API             | NodeJS + MongoDB                           |  Free |
+| Web Application | Node + Express + EJS                       |  Free |
 
 ---
 ### Prerequisite: (For Windows Machine)
@@ -55,9 +65,9 @@ Find IP Address of the `wlan0` interface.
 
 Read the instruction in [Guide Folder](https://github.com/ntuong196/aed-tracking/Guide)
 
-3) Connect to Pi Desktop using HDMI cable.
+3) Connect to Pi Desktop using HDMI or Ethernet cable.
 
-Read the instruction in [here]()
+Read the instruction in [here](https://www.instructables.com/id/How-to-connect-raspberry-pi-to-laptop-display/)
 
 Open terminal from the Pi
 
