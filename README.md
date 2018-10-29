@@ -20,7 +20,7 @@ Goal: Implementing the tracking device and monitoring web app for AED kit of QUT
 
 Project components:
 
-| Component       | Are                                        | Cost  |
+| Component       | Specification                              | Cost  |
 | ---------------:|:------------------------------------------:| -----:|
 | Sensor          | Raspberry Pi 3 Model B + NEO 6M GPS Module |  $100 |
 | API             | NodeJS + MongoDB                           |  Free |
@@ -73,17 +73,34 @@ Open terminal from the Pi
 
 `sudo apt-get distro-upgrade && sudo apt-get update && sudo apt-get upgrade -y`
 
+#### Wiring Raspberry Pi with the GPS Module:
+
+<p align="center">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/wiring.png">
+</p>
+
+Wiring table:
+
+| NEO-6M GPS       | Raspberry Pi       | Note        |
+| ----------------:|:------------------:| -----------:|
+| VCC              | Pin 1              |  3.3V       |
+| TX               | Pin 10             |  RX(GPIO15) |
+| RX               | Pin 8              |  TX(GPIO14) |
+| GND              | Pin 6              |  GND        |
+
 #### UART config:
 
-Enable Sensor Reading data from GPS module
+This configration will allows Raspberry Pi reading the data from GPS module. 
 
-Open Terminal
+Open Terminal from the Raspberry Pi
 
 `sudo raspi-config`
 
 Go to Advance option -> turn on serial hardware, turn off serial console 
 
 #### Install GPS client software:
+
+Open Terminal from the Raspberry Pi
 
 ```
 sudo apt-get install gpsd-clients gpsd -y
@@ -98,7 +115,17 @@ sudo systemctl enable gpsd.socket
 sudo systemctl start gpsd.socket
 ```
 
+Test gps module with command 
+
+`cgps` 
+
+or `gpsmon`
+
+Remember to terminate those processes to continue the set-up with `CTRL + C`
+
 #### Clone and Run tracking software:
+
+Clone the software 
 
 ```
 git clone https://github.com/ntuong196/aed-tracking`
@@ -108,6 +135,7 @@ python3 gpsdserver.py
 
 ---
 ### NodeJS Server:
+
 On windows (macOs, linux) machine, open terminal (command line)
 
 ```
@@ -118,6 +146,16 @@ npm start
 ```
 
 Open Web browser in address `localhost:3000/` to view the web page.
+
+<p align="center">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/wiring.png">
+</p>
+
+Login with default username: `n9776001@qut.edu.au` and password: `toor@101`
+
+<p align="center">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/campus_view.png">
+</p>
 
 ---
 ### Additional Control the Sensor:
