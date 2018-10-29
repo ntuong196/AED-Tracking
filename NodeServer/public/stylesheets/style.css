@@ -2,39 +2,34 @@
 
 /* BOOTSTRAP GRID SERVICES */
 /*////////////////////////////////////////////////////////////////*/
-.col-centered{
-    float: none;
-    margin: 0 auto;
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
 }
 .navbar {
-	background-color: rgba(0, 0, 0, 0.5);
-	padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .wizard-container {
-
-    padding-top: 100px;
-    z-index: 3;
+  padding-top: 60px;
+  z-index: 3;
 }
 .wizard-card form {
   display: block;
 }
-body {
-	background-image: url('/images/theme.jpg'); 
-  background-size: cover;
-  background-repeat: repeat;
-  width: 100%
-}
+
 .wizard-card {
-	padding: 20px;
+  border-radius: 2rem;
+  padding: 20px;
 }
 
 .wizard-container {
-	opacity: 0.95;
+  opacity: 1;
 }
 
-.rating{
+.rating {
   font-weight: bold;
-  color: #FF8F01;
+  color: #ff8f01;
 }
 
 .footer {
@@ -45,7 +40,7 @@ body {
   bottom: 20px;
   right: 0px;
   width: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
   z-index: 4;
   text-align: left;
   margin-top: 60px;
@@ -53,24 +48,30 @@ body {
   font-size: 15px;
 }
 .footer a {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .media {
-    padding: 5px;
+  padding: 5px;
 }
 .media img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
-/*.map iframe {
-    border: 0px;
-    margin: auto;
-    display: block;
-}*/
 
 /*Modify Bootstrap Component*/
+.bg-gradient {
+  background: linear-gradient(-30deg, #12bbad 0%, #4f70ce 50%, #12bbad 100%);
+}
+
+/* body {
+  background-image: url("/images/theme.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  width: 100%;
+} */
+
 .btn {
   border-radius: 1rem;
 }
@@ -80,42 +81,149 @@ body {
 
 #map {
   width: 100%;
-  height: 400px;
+  height: 600px;
 }
 
 #imgmap {
-    background-image: url('/images/map.JPG'); 
-    background-size: cover;
-    background-repeat: repeat;
-    width: 100%;
-    height: 400px;
+  background-image: url("/images/map.JPG");
+  background-size: cover;
+  background-repeat: repeat;
+  width: 100%;
+  height: 400px;
 }
 
 #status {
-    visibility: hidden;
+  visibility: hidden;
 }
 #statusGen {
-    visibility: hidden;
+  visibility: hidden;
 }
 .controls {
-    margin-top: 10px;
-    border: 1px solid transparent;
-    border-radius: 2px 0 0 2px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    height: 32px;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 #searchInput {
-    background-color: #fff;
-    font-size: 18px;
-    font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 50%;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 50%;
 }
 #searchInput:focus {
-    border-color: #4d90fe;
+  border-color: #4d90fe;
+}
+
+/* FONT SETTING */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-bottom: 1.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-weight: 200;
+  line-height: 1;
+  color: inherit;
+}
+
+h1,
+.h1 {
+  font-size: 2.5rem;
+}
+
+h2,
+.h2 {
+  font-size: 2rem;
+}
+
+h3,
+.h3 {
+  font-size: 1.75rem;
+}
+
+h4,
+.h4 {
+  font-size: 1.5rem;
+}
+
+h5,
+.h5 {
+  font-size: 1.25rem;
+}
+
+h6,
+.h6 {
+  font-size: 1rem;
+}
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background: linear-gradient(-30deg, #12bbad 0%, #4f70ce 50%, #12bbad 100%);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+/* #main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+} */
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

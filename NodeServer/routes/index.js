@@ -5,11 +5,6 @@ router = express.Router()
 // Configuration requirement
 const config = require('../models/config.js')
 
-// API requirement
-const mapClient = require('@google/maps').createClient({
-  key: 'AIzaSyAK8MrWHM4riyD4HJ6M5pabVAs09scuLBU'
-})
-
 // Database
 const db = require('../models/database')
 
