@@ -5,10 +5,9 @@ const mongoose = require('mongoose')
 const config = require('./config.js')
     // message = require('./models/message');
 
-
 const dbUrl = config.dbUrl
 
-mongoose.connect(dbUrl, { useNewUrlParser: true })
+mongoose.connect(dbUrl, { useNewUrlParser: true, useCreateIndex: true })
 
 db = mongoose.connection
 

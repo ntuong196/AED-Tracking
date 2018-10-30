@@ -71,7 +71,7 @@ sudo fuser -k /dev/serial0
 
 ## start up script
 sudo nano .bashrc
-./server.py
+./scriptserver.py
 
 ## Additional code
 ###########################################################################

@@ -1,28 +1,38 @@
 // Express
-const express = require('express'),
-router = express.Router()
+const express = require("express"),
+  router = express.Router()
 
 // Configuration requirement
-const config = require('../models/config.js')
+const config = require("../models/config.js")
 
 // Database requirement
-const db = require('../models/database.js')
+const database = require("../models/database.js")
 
 // Schema
-const aed = require('../models/aed.js')
+const Aed = require("../models/aed.js")
 
-const gp01 = new aed()
-
-/* POST home page. */
-router.post('/',(req,res,next)=>{
-	const data = req.body.aed_id
-	console.log(data)
-	res.send(data)
+/* GET AED LIST */
+router.get("/aed", (req, res, next) => {
+  Aed.find(function(err, aed_kit) {
+    if (err) return console.error(err)
+    res.json(aed_kit)
+  })
 })
 
-router.get('/', (req,res)=>{
+// GET SPECIFIC AED LOCATION
 
+router.get("/aed/:aed_code", (req, res) => {
+  const aed_code = req.params.aed_code
+  // Intances
+  const geoData = require("../models/location.js")(aed_code)
+
+  geoData
+    .find({})
+    .limit(1)
+    .exec(function(err, geo) {
+      if (err) return console.error(err)
+      res.status(200).json(geo)
+    })
 })
-
 
 module.exports = router

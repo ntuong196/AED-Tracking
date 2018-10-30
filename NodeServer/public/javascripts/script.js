@@ -44,6 +44,7 @@ var locations = [
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -27.4768784, lng: 153.02841809999998 },
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
     zoom: 18
   })
 
@@ -65,8 +66,7 @@ function initMap() {
   })
 
   var markerCluster = new MarkerClusterer(map, markers, {
-    imagePath:
-      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+    imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
   })
 
   marker = new google.maps.Marker({
