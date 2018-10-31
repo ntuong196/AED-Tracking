@@ -23,7 +23,7 @@ Project components:
 | ---------------:|:------------------------------------------:| -----:|
 | Sensor          | Raspberry Pi 3 Model B + NEO 6M GPS Module |  $100 |
 | API             | NodeJS + MongoDB                           |  Free |
-| Web Application | Node + Express + EJS                       |  Free |
+| Web Application | NodeJS + React                             |  Free |
 
 ---
 ### Prerequisite: (For Windows Machine)
