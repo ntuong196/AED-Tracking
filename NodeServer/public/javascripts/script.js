@@ -18,6 +18,18 @@ jQuery(document).ready(function($) {
   alterClass()
 })
 
+function alarmOn() {
+  var sound = document.getElementById("audio")
+  sound.loop = true
+  sound.load()
+  sound.play()
+}
+
+function alarmOff() {
+  var sound = document.getElementById("audio")
+  sound.pause()
+}
+
 /* BASIC LOCATION SERVICES */
 //////////////////////////////////////////////////////////////////
 var marker
