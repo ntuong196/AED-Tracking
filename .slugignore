@@ -74,6 +74,7 @@ typings/
 
 # Reference file
 .ref
+*.code-workspace
 
 # document
 Guide/
