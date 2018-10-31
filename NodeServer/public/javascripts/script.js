@@ -1,28 +1,22 @@
-/* NAVIGATION CONTROL */
+/* DASHBOARD CONTROL */
 //////////////////////////////////////////////////////////////////
-let opened = 0
-
-/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px"
-  document.getElementById("main").style.marginLeft = "250px"
-}
-
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0"
-  document.getElementById("main").style.marginLeft = "0"
-}
-
-function toogleSideBar() {
-  if (opened) {
-    closeNav()
-    opened = 0
-  } else {
-    openNav()
-    opened = 1
+jQuery(document).ready(function($) {
+  var alterClass = function() {
+    var ww = document.body.clientWidth
+    if (ww < 784) {
+      $(".content").removeClass("col-8")
+      $(".content").addClass("col-12")
+    } else {
+      $(".content").removeClass("col-12")
+      $(".content").addClass("col-8")
+    }
   }
-}
+  $(window).resize(function() {
+    alterClass()
+  })
+  //Fire it when the page first loads:
+  alterClass()
+})
 
 /* BASIC LOCATION SERVICES */
 //////////////////////////////////////////////////////////////////
@@ -66,7 +60,8 @@ function initMap() {
   })
 
   var markerCluster = new MarkerClusterer(map, markers, {
-    imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+    imagePath:
+      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
   })
 
   marker = new google.maps.Marker({
@@ -163,3 +158,29 @@ function toggleBounce() {
     marker.setAnimation(google.maps.Animation.BOUNCE)
   }
 }
+
+/* NAVIGATION CONTROL - DELETED*/
+//////////////////////////////////////////////////////////////////
+// let opened = 0
+
+// /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+// function openNav() {
+//   document.getElementById("mySidenav").style.width = "250px"
+//   document.getElementById("main").style.marginLeft = "250px"
+// }
+
+// /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+// function closeNav() {
+//   document.getElementById("mySidenav").style.width = "0"
+//   document.getElementById("main").style.marginLeft = "0"
+// }
+
+// function toogleSideBar() {
+//   if (opened) {
+//     closeNav()
+//     opened = 0
+//   } else {
+//     openNav()
+//     opened = 1
+//   }
+// }

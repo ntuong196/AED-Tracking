@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <!-- Header -->
 <!-- ------------------------------>
-<div class="navbar navbar-expand-lg navbar-light bg-faded">
+<nav class="navbar navbar-expand-lg navbar-light bg-faded" id="navbar">
     <div class="container">
         <a class="navbar-brand logo" href="/" >
             <img class="d-inline-block " src="/images/logo.png" alt="Steve Logo" width=80px> <a style="font-size: 20px; color: white;">AED Tracking</a>
@@ -28,7 +27,7 @@
 
             <div class="my-2 my-lg-0">
                 <a class="d-inline btn navbar-btn mr-sm-2 text-white btn-outline-primary" >
-                    <i class="far d-inline fa-lg fa-bookmark"></i>&nbsp;Notification
+                    <i class="far d-inline fa-lg fa-bookmark"></i>&nbsp;Notification &nbsp <span class="badge badge-primary">1</span>
                 </a>
                 <a class="d-inline btn navbar-btn ml-2 text-white btn-outline-primary" data-toggle="modal" data-target="#loginModal">
                     <i class="far fa-lg fa-user-circle d-inline "></i>&nbsp;Log Out
@@ -36,7 +35,7 @@
             </div>
         </div>
     </div>
-</div>
+</nav>
 
 
 <!-- Modal -->
@@ -53,6 +52,7 @@
                 <h4>Login to system</h4>
                 <h4>View the list of AED</h4>
                 <h4>View AED details</h4>
+                <a class= "btn btn-primary" href="/documents/InstallationandDemoInstructions.pdf" role="button">User Manual</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
