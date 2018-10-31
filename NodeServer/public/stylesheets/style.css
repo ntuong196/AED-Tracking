@@ -20,12 +20,29 @@
 /* BOOTSTRAP GRID SERVICES */
 /*////////////////////////////////////////////////////////////////*/
 
+.shadow-box {
+  box-shadow: 0 10px 8px 5px rgba(0, 0, 0, 0.2), 10px 6px 20px 5px rgba(0, 0, 0, 0.19);
+}
+
+.top-item{
+  border-radius: 20px 20px 0 0 !important;
+}
+
+.bottom-item{
+  border-radius: 0 0 20px 20px !important;
+}
+
+.dashboard{
+  padding-right: 0;
+  border-radius: 2rem;
+}
+
 .col-centered {
   float: none;
   margin: 0 auto;
 }
 .navbar {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .page {
   margin-top: 90px;

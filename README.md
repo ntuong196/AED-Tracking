@@ -1,11 +1,10 @@
 <p align="center">
-  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/NodeServer/public/images/logo.png">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/logo.png" width="300">
   
   [![Build Status](https://travis-ci.org/angular/angular.svg?branch=master)](https://travis-ci.org/angular/angular)
   [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06)](https://www.browserstack.com/automate/public-build/LzF3RzBVVGt6VWE2S0hHaC9uYllOZz09LS1BVjNTclBKV0x4eVRlcjA4QVY1M0N3PT0=--eb4ce8c8dc2c1c5b2b5352d473ee12a73ac20e06)
   [![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://www.npmjs.com/@angular/core)
 </p>
-
 
 
 # QUT AED Tracking
@@ -154,7 +153,7 @@ Open Web browser in address `localhost:3000/` to view the web page.
 Login with default username: `n9776001@qut.edu.au` and password: `toor@101`
 
 <p align="center">
-  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/campus_view.PNG">
+  <img src="https://github.com/ntuong196/AED-Tracking/raw/master/Screenshots/home.jpg">
 </p>
 
 ---
