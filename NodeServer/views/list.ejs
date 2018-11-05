@@ -57,10 +57,38 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         CONTROL PANEL
                     </li>
-                    <li class="bottom-item list-group-item d-flex justify-content-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="btn btn-primary btn-block" href="/list" role="button">AED List</a>
                         <br>&nbsp &nbsp
                         <a class="btn btn-primary btn-block" href="/adduser" role="button">Add User</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        AED Code
+                        <a class="badge badge-primary badge-pill" href="/<%= aed_code%>" role="button">
+                            <%= aed_code%></a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Floor Level
+                        <span class="badge badge-primary badge-pill">
+                            <%= level %></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Moving
+                        <span class="badge badge-primary badge-pill">
+                            <%= moving%></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Origin Location
+                        <span class="badge badge-primary badge-pill">
+                            <%= location %></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Online
+                        <span class="badge badge-primary badge-pill">
+                            <%= online %></span>
+                    </li>
+                    <li class="bottom-item list-group-item d-flex justify-content-between align-items-center">
+
                     </li>
                 </ul>
 

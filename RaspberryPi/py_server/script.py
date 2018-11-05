@@ -104,7 +104,9 @@ python3
 # print (installed_packages)
 
 ## file transfer (download)
-scp server.py pi@192.168.0.18:Desktop/py_server
+scp gpsdserver.py pi@192.168.0.18:Desktop/py_server
+dos2unix gpsdserver.py
+python3 gpsdserver.py
 
 ## raw gps data
 sudo nano gpspipe

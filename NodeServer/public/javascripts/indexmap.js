@@ -1,253 +1,233 @@
-// global variables
-let map;
-const MAPAPP = {};
-MAPAPP.markers = [];
-MAPAPP.currentInfoWindow;
-let trafficLayer;
-const webcamMarkers = [];
-const hazardMarkers = [];
-const crashMarkers = [];
-const congestionMarkers = [];
-const roadworkMarkers = [];
-const specialEventMarker = [];
-const floodingMarkers = [];
-const polyLines = [];
+/* LOADER */
+//////////////////////////////////////////////////////////////////
+$(window).on("load", function () {
+    $(".loader").fadeOut("slow")
+})
 
+/* LOADER */
+//////////////////////////////////////////////////////////////////
+var socket = io.connect('/')
 
-// // request traffic camera data from server and populate markers
-// function getTrafficCamsData() {
-//     $.ajax({
-//         url: '/webcamsData',
-//         dataType: 'json',
-//         cache: false
-//     }).done(function (data) {
-//         if (data.error) {
-//             window.alert('QldTraffic server is not responding. Please refresh the page.');
-//             return
-//         }
-//         populateWebcamsMarkers(data);
+function startListen() { }
 
-//         //console.log(data);
-//     })
+socket.emit("search", {})
+//inserts pointer into the map
+function addMessage(lat, long, time) {
+    //time = new Date(time); // time not needed for this example
+    loc = { latlong: false, hits: 0 }
+    loc.latlong = new google.maps.LatLng(lat, long);
+    addMarker(loc, map, redicon);
+}
 
-// }
+function addMarker(loc, map, icon) {
+    place = loc.latlong
+    marker = new google.maps.Marker({
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP,
+        position: place
+    })
+    if (loc.hits == 0) {
+        marker.icon = icon
+        marker.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png"
+    }
+    index = loc.id
+}
+/* DASHBOARD CONTROL */
+//////////////////////////////////////////////////////////////////
+jQuery(document).ready(function ($) {
+    var alterClass = function () {
+        var ww = document.body.clientWidth
+        if (ww < 784) {
+            $(".content").removeClass("col-8")
+            $(".content").addClass("col-12")
+        } else {
+            $(".content").removeClass("col-12")
+            $(".content").addClass("col-8")
+        }
+    }
+    $(window).resize(function () {
+        alterClass()
+    })
+    //Fire it when the page first loads:
+    alterClass()
+})
 
-// // request event data from server and populate event marker
-// function getTrafficEventsData() {
-//     $.ajax({
-//         url: '/eventsData',
-//         dataType: 'json',
-//         cache: false
-//     }).done(function (data) {
-//         if (data.error) {
-//             window.alert('QldTraffic server is not responding. Please refresh the page.');
-//             return
-//         }
-//         //console.log(data);
-//         populateEventsMarkers(data);
-//         let infor = document.getElementById('infor');
-//         const currentdate = new Date();
-//         infor.innerHTML = `Traffic information updated at ${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`;
-//         document.getElementById("loader").style.display = "none";
-//     })
+function alarmOn() {
+    var sound = document.getElementById("audio")
+    sound.loop = true
+    sound.load()
+    sound.play()
+}
 
-// }
+function alarmOff() {
+    var sound = document.getElementById("audio")
+    sound.pause()
+}
+
+/* BASIC LOCATION SERVICES */
+//////////////////////////////////////////////////////////////////
+var marker
+
+var locations = [
+    { lat: -27.4773824, lng: 153.0292242 },
+    { lat: -27.4771133, lng: 153.0283349 },
+    { lat: -27.4779801, lng: 153.0289722 },
+    { lat: -27.4761435, lng: 153.0279634 },
+    { lat: -27.4764346, lng: 153.0274477 },
+    { lat: -27.4771492, lng: 153.0273202 },
+    { lat: -27.4766894, lng: 153.0278129 },
+    { lat: -27.4768749, lng: 153.0277575 },
+    { lat: -27.4777743, lng: 153.0296884 },
+    { lat: -27.4782384, lng: 153.0280963 }
+]
 
 function initMap() {
-    const center = { lat: -27.477337, lng: 153.028441 };
-
-    const mapOptions = {
-        zoom: 12,
+    var map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -27.4768784, lng: 153.02841809999998 },
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: center
-    };
+        zoom: 18
+    })
 
-    map = new google.maps.Map(document.getElementById('indexmap'), mapOptions);
+    //   Autocomplete
+    var input = document.getElementById("searchInput")
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(input)
 
-    google.maps.event.addListener(map, 'click', function () {
-        if (MAPAPP.currentInfoWindow) MAPAPP.currentInfoWindow.close();
-    });
-    trafficLayer = new google.maps.TrafficLayer();
-    trafficLayer.setMap(map);
-    document.getElementById('trafficLayer').checked = true;
+    var autocomplete = new google.maps.places.Autocomplete(input)
+    autocomplete.bindTo("bounds", map)
 
-    initAutoComplete();
+    var infowindow = new google.maps.InfoWindow()
 
-    getTrafficCamsData();
-    getTrafficEventsData();
-
-
-}
-
-function populateWebcamsMarkers(data) {
-
-    $.each(data.features, function (key, val) {
-        const marker = new google.maps.Marker({
-            position: { lat: val.geometry.coordinates[1], lng: val.geometry.coordinates[0] },
-            icon: '/images/pin_camera.png'
-        });
-
-        const content = `<div class="card" style="width: 20rem; border-width: 0px">
-                           <img class="card-img-top" src="${val.properties.image_url}" alt="Card image cap">
-                           <div class="card-block">
-                              <h6 class="card-title">${val.properties.description}</h6>
-                              <p class="card-text">Direction: ${val.properties.direction}</p>
-                           </div>
-                         </div>`
-
-        marker.infowindow = new google.maps.InfoWindow({
-            content: content
-        });
-
-        addMarkerListener(marker);
-
-        webcamMarkers.push(marker);
-
-    });
-
-    //display traffic camera markers
-    setMarkersOnMap(webcamMarkers, map);
-    document.getElementById('trafficCams').checked = true;
-}
-
-function displayEventMarkers() {
-    setMarkersOnMap(hazardMarkers, map);
-    document.getElementById('hazards').checked = true;
-    setMarkersOnMap(crashMarkers, map);
-    document.getElementById('crashes').checked = true;
-    setMarkersOnMap(congestionMarkers, map);
-    document.getElementById('congestion').checked = true;
-    setMarkersOnMap(roadworkMarkers, map);
-    document.getElementById('roadworks').checked = true;
-    setMarkersOnMap(specialEventMarker, map);
-    document.getElementById('specialEvents').checked = true;
-    setMarkersOnMap(floodingMarkers, map);
-    document.getElementById('flooding').checked = true;
-}
-
-function checkEventTypeAndPolylineAssociated(eventType, marker, polyLine) {
-    if (eventType === 'Hazard') {
-        hazardMarkers.push(marker);
-        if (polyLine) {
-            hazardMarkers.push(polyLine)
-        }
-    } else if (eventType === 'Crash') {
-        crashMarkers.push(marker);
-        if (polyLine) {
-            crashMarkers.push(polyLine)
-        }
-    } else if (eventType === 'Congestion') {
-        congestionMarkers.push(marker);
-        if (polyLine) {
-            congestionMarkers.push(polyLine)
-        }
-    } else if (eventType === 'Special event') {
-        specialEventMarker.push(marker);
-        if (polyLine) {
-            specialEventMarker.push(polyLine)
-        }
-    } else if (eventType === 'Roadworks') {
-        roadworkMarkers.push(marker);
-        if (polyLine) {
-            roadworkMarkers.push(polyLine)
-        }
-    } else if (eventType === 'Flooding') {
-        floodingMarkers.push(marker);
-        if (polyLine) {
-            floodingMarkers.push(polyLine)
-        }
-    }
-}
-
-function populateEventsMarkers(data) {
-    $.each(data.features, function (key, val) {
-        let marker;
-        let polyLine;
-        const eventType = val.properties.event_type;
-        if (val.geometry.geometries[0].type === "Point") {
-            marker = new google.maps.Marker({
-                position: { lat: val.geometry.geometries[0].coordinates[1], lng: val.geometry.geometries[0].coordinates[0] },
-                icon: eventMarkerIcons(eventType)
-            });
-        } else if (val.geometry.geometries[0].type === "LineString") {
-            marker = new google.maps.Marker({
-                position: { lat: val.geometry.geometries[0].coordinates[Math.floor(val.geometry.geometries[0].coordinates.length / 2)][1], lng: val.geometry.geometries[0].coordinates[Math.floor(val.geometry.geometries[0].coordinates.length / 2)][0] },
-                icon: eventMarkerIcons(eventType)
-            });
-
-            const coordinates = [];
-            $.each(val.geometry.geometries[0].coordinates, function (i, ob) {
-                coordinates.push({ lat: ob[1], lng: ob[0] });
-            })
-
-            polyLine = new google.maps.Polyline({
-                path: coordinates,
-                geodesic: true,
-                strokeColor: '#37474F',
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-                //map: map
-            });
-
-            polyLines.push(polyLine);
-
-        }
-
-        const content = `<h6>${val.properties.event_type}</h6>
-                        <table border="0">
-                          <tbody>
-                            <tr>
-                              <th scope="row">Suburbs/Localities</th>
-                              <td>${val.properties.road_summary.locality}</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Roads</th>
-                              <td>${val.properties.road_summary.road_name}</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Description</th>
-                              <td>${val.properties.description}</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">What to expect</th>
-                              <td>${val.properties.impact.impact_subtype}</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Last updated</th>
-                              <td>${val.properties.last_updated.substring(0, 10)}</td>
-                            </tr>
-                          </tbody>
-                        </table>`
-        marker.infowindow = new google.maps.InfoWindow({
-            content: content,
-            maxWidth: 300
+    var markers = locations.map(function (location) {
+        return new google.maps.Marker({
+            position: location,
+            label: "A",
+            icon: { url: "http://maps.google.com/mapfiles/ms/micons/red.png" }
         })
+    })
 
-        addMarkerListener(marker);
+    var markerCluster = new MarkerClusterer(map, markers, {
+        imagePath:
+            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+    })
 
-        checkEventTypeAndPolylineAssociated(eventType, marker, polyLine);
-    });
+    marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+        animation: google.maps.Animation.DROP
+    })
+    marker.addListener("click", toggleBounce)
 
-    displayEventMarkers();
+    autocomplete.addListener("place_changed", function () {
+        infowindow.close()
+        marker.setVisible(false)
+        var place = autocomplete.getPlace()
+        if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry")
+            return
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport)
+        } else {
+            map.setCenter(place.geometry.location)
+            map.setZoom(17)
+        }
+        marker.setIcon({
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+        })
+        marker.setPosition(place.geometry.location)
+        marker.setVisible(true)
+
+        var address = ""
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] &&
+                    place.address_components[0].short_name) ||
+                "",
+                (place.address_components[1] &&
+                    place.address_components[1].short_name) ||
+                "",
+                (place.address_components[2] &&
+                    place.address_components[2].short_name) ||
+                ""
+            ].join(" ")
+        }
+
+        infowindow.setContent(
+            "<div><strong>" + place.name + "</strong><br>" + address
+        )
+        infowindow.open(map, marker)
+
+        document.getElementById("location").innerHTML =
+            "Address: " + place.formatted_address
+        document.getElementById("latlon").innerHTML =
+            "Latitude, longitude: " +
+            place.geometry.location.lat() +
+            ", " +
+            place.geometry.location.lng()
+
+        if (
+            place.geometry.location.lat() == -27.477357 &&
+            place.geometry.location.lng() == 153.028415
+        ) {
+            document.getElementById("status").style.visibility = "visible"
+            document.getElementById("statusGen").style.visibility = "visible"
+            document.getElementById("aedNum").innerHTML = "Number of AED: 9"
+        }
+        if (
+            place.geometry.location.lat() == -27.4509016 &&
+            place.geometry.location.lng() == 153.01691170000004
+        ) {
+            document.getElementById("status", "statusGen").style.visibility =
+                "visible"
+            document.getElementById("aedNum").innerHTML = "Number of AED: 10"
+        }
+        if (
+            place.geometry.location.lat() == -27.477357 &&
+            place.geometry.location.lng() == 153.028415
+        ) {
+            document.getElementById("status", "statusGen").style.visibility =
+                "visible"
+            document.getElementById("aedNum").innerHTML = "Number of AED: 11"
+        }
+    })
 }
-
-function addMarkerListener(marker) {
-    google.maps.event.addListener(marker, 'click', function () {
-        if (MAPAPP.currentInfoWindow) MAPAPP.currentInfoWindow.close();
-        marker.infowindow.open(map, marker);
-        MAPAPP.currentInfoWindow = marker.infowindow;
-        map.panTo(marker.getPosition());
-    });
-}
-
-function setMarkersOnMap(markerList, map) {
-    for (let i = 0; i < markerList.length; i++) {
-        markerList[i].setMap(map);
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null)
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE)
     }
 }
 
+/* NAVIGATION CONTROL - DELETED*/
+//////////////////////////////////////////////////////////////////
+// let opened = 0
 
-function eventMarkerIcons(type) {
-    type = type.replace(/\s/g, '');
-    return '/images/pin_' + type + '.png'
-}
+// /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+// function openNav() {
+//   document.getElementById("mySidenav").style.width = "250px"
+//   document.getElementById("main").style.marginLeft = "250px"
+// }
+
+// /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+// function closeNav() {
+//   document.getElementById("mySidenav").style.width = "0"
+//   document.getElementById("main").style.marginLeft = "0"
+// }
+
+// function toogleSideBar() {
+//   if (opened) {
+//     closeNav()
+//     opened = 0
+//   } else {
+//     openNav()
+//     opened = 1
+//   }
+// }

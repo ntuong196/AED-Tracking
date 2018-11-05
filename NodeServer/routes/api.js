@@ -10,6 +10,7 @@ const database = require("../models/database.js")
 
 // Schema
 const Aed = require("../models/aed.js")
+const Location = require("./../models/location")
 
 /* GET AED LIST */
 router.get("/aed", (req, res, next) => {
@@ -24,15 +25,17 @@ router.get("/aed", (req, res, next) => {
 router.get("/aed/:aed_code", (req, res) => {
   const aed_code = req.params.aed_code
   // Intances
-  const geoData = require("../models/location.js")(aed_code)
+  const geoData = Location.getDatabase(aed_code)
 
   geoData
     .find({})
+    .sort({ time: -1 })
     .limit(1)
     .exec(function(err, geo) {
       if (err) return console.error(err)
       res.status(200).json(geo)
     })
 })
+
 
 module.exports = router

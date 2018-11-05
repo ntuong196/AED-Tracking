@@ -1,9 +1,10 @@
 #! /usr/bin/python3
-import pkgutil
+import json
 from gps import *
 from os import system
 from datetime import datetime
 from pymongo import MongoClient
+import requests as req
 
 def main():
     gpsd = gps(mode=WATCH_ENABLE|WATCH_JSON)
@@ -19,6 +20,7 @@ def main():
             system("clear")
             print ('latitude\tlongitude\ttime utc\t\taltitude\tspeed' )
             if (report['class'] == 'TPV') & (getattr(report,'lat',0.0) != 0):
+                
                 is_moving = False if (getattr(report,'speed', 0.0) <= 2) else True
                 moved = moved ^ is_moving
                 aed_locate = {
@@ -34,7 +36,23 @@ def main():
                     getattr(report,'time',''),"\t",
                     getattr(report,'alt','nan'),"\t",
                     getattr(report,'speed','nan'),"\t")
+                # req.post("http://192.168.0.8:3000/stream", data = aed_locate)
                 collection.insert_one(aed_locate)
+            else:
+                ipLocation = req.get("http://ipinfo.io/json").json()
+                geoData = ipLocation['loc'].split(",")
+                aed_locate = {
+                    'time': datetime.now(),
+                    'lat':geoData[0],
+                    'long':geoData[1],
+                    'alt' : 0,
+                    'speed' : 0,
+                    'moved' : 0
+                }
+                print(geoData[0],geoData[1],datetime.now())
+                # req.post("http://192.168.0.8:3000/stream", data = aed_locate)
+                collection.insert_one(aed_locate)
+
 
     except (KeyboardInterrupt): #when you press ctrl+c
         sys.exit()

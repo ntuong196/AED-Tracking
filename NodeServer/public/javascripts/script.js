@@ -4,6 +4,10 @@ $(window).on("load", function() {
   $(".loader").fadeOut("slow")
 })
 
+/* LOADER */
+//////////////////////////////////////////////////////////////////
+var socket = io.connect()
+
 /* DASHBOARD CONTROL */
 //////////////////////////////////////////////////////////////////
 jQuery(document).ready(function($) {

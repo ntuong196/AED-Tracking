@@ -11,6 +11,9 @@ const location = new Schema({
   is_moving: Boolean
 })
 
-module.exports = function(collectionName) {
-  return mongoose.model("Location", location, collectionName)
+module.exports = {
+  getDatabase: function(collectionName) {
+    return mongoose.model("Location", location, collectionName)
+  }
+
 }

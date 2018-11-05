@@ -169,3 +169,30 @@ then enable VNC interface in raspi-config
 Download [VNC Server](https://www.realvnc.com/en/connect/download/vnc/)
 
 Connect to the Raspberry Pi through External IP Address,eg. `192.168.0.18`
+
+#### Alternative way to find Raspberry Pi IPv4 (Internal)
+
+Run command line in windows `ipconfig`
+
+Find computer's IP address, eg. `192.168.0.8`
+
+Run command line 
+
+```
+<!-- Then ping the network broadcast Address -->
+ping 192.168.0.255
+
+arp -a
+``` 
+
+Find all connection in the table connect with `192.168.0.8`
+
+#### Send File(Code, etc.) to Raspberry Pi
+
+Open Git Bash and Run 
+
+```
+scp gpsdserver.py pi@192.168.0.18:Desktop/py_server
+dos2unix gpsdserver.py
+python3 gpsdserver.py
+```
