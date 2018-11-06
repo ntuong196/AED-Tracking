@@ -1,5 +1,5 @@
 #! /usr/bin/python3
-import json
+import json,time
 from gps import *
 from os import system
 from datetime import datetime
@@ -39,20 +39,21 @@ def main():
                 # req.post("http://192.168.0.8:3000/stream", data = aed_locate)
                 collection.insert_one(aed_locate)
             else:
-                ipLocation = req.get("http://ipinfo.io/json").json()
-                geoData = ipLocation['loc'].split(",")
+                ipLocation = req.get("http://ip-api.com/json").json()
+                lat = ipLocation['lat']
+                lon = ipLocation['lon']
                 aed_locate = {
                     'time': datetime.now(),
-                    'lat':geoData[0],
-                    'long':geoData[1],
+                    'lat':lat,
+                    'long':lon,
                     'alt' : 0,
                     'speed' : 0,
                     'moved' : 0
                 }
-                print(geoData[0],geoData[1],datetime.now())
+                print(lat,lon,datetime.now())
                 # req.post("http://192.168.0.8:3000/stream", data = aed_locate)
                 collection.insert_one(aed_locate)
-
+            time.sleep(0.8)
 
     except (KeyboardInterrupt): #when you press ctrl+c
         sys.exit()
