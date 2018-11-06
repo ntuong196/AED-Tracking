@@ -8,31 +8,89 @@
 /* http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif? */
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url("/images/loader.gif") 50% 50% no-repeat rgb(255, 255, 255);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url("/images/loader.gif") 50% 50% no-repeat rgb(255, 255, 255);
+}
+
+/* GOOGLE MAP */
+/*////////////////////////////////////////////////////////////////*/
+
+#map {
+  width: 100%;
+  height: 600px;
+}
+
+.map-control {
+  background-color: #ffffff;
+   border-radius: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+  font-family: "Roboto", "sans-serif";
+  margin: 10px;
+  /* Hide the control initially, to prevent it from appearing
+           before the map loads. */
+  display: none;
+}
+/* Display the control once it is inside the map. */
+#map .map-control {
+  display: block;
+}
+
+.selector-control {
+  font-size: 20px;
+  line-height: 50px;
+  padding-left: 5px;
+   border-radius: 1rem;
+  padding-right: 5px;
+}
+
+#searchInput {
+  background-color: #fff;
+  float: right;
+  font-size: 18px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 50%;
+}
+#searchInput:focus {
+  border-color: #4d90fe;
+}
+
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* BOOTSTRAP GRID SERVICES */
 /*////////////////////////////////////////////////////////////////*/
 
 .shadow-box {
-  box-shadow: 0 10px 8px 5px rgba(0, 0, 0, 0.2), 10px 6px 20px 5px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 8px 5px rgba(0, 0, 0, 0.2),
+    10px 6px 20px 5px rgba(0, 0, 0, 0.19);
 }
 
-.top-item{
+.top-item {
   border-radius: 20px 20px 0 0 !important;
 }
 
-.bottom-item{
+.bottom-item {
   border-radius: 0 0 20px 20px !important;
 }
 
-.dashboard{
+.dashboard {
   padding-right: 0;
   border-radius: 2rem;
 }
@@ -143,48 +201,6 @@
 }
 .form-control {
   border-radius: 1rem;
-}
-
-#map {
-  width: 100%;
-  height: 600px;
-}
-
-#imgmap {
-  background-image: url("/images/map.JPG");
-  background-size: cover;
-  background-repeat: repeat;
-  width: 100%;
-  height: 400px;
-}
-
-#status {
-  visibility: hidden;
-}
-#statusGen {
-  visibility: hidden;
-}
-.controls {
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-#searchInput {
-  background-color: #fff;
-  font-size: 18px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 50%;
-}
-#searchInput:focus {
-  border-color: #4d90fe;
 }
 
 /* FONT SETTING */

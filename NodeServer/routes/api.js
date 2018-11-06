@@ -12,6 +12,9 @@ const database = require("../models/database.js")
 const Aed = require("../models/aed.js")
 const Location = require("./../models/location")
 
+// GPS handler
+const gpsHandler = require("./../models/gps")
+
 /* GET AED LIST */
 router.get("/aed", (req, res, next) => {
   Aed.find(function(err, aed_kit) {
@@ -28,12 +31,29 @@ router.get("/aed/:aed_code", (req, res) => {
   const geoData = Location.getDatabase(aed_code)
 
   geoData
-    .find({})
+    .find({speed:{$gt:0}})
     .sort({ time: -1 })
     .limit(1)
     .exec(function(err, geo) {
       if (err) return console.error(err)
       res.status(200).json(geo)
+    })
+})
+
+/* Check moving AED kit */
+router.get("/check", (req, res, next) => {
+  const geoData = Location.getDatabase("gp01")
+
+  geoData
+    .find()
+    .sort({ time: -1 })
+    .limit(1)
+    .exec(function (err, geo) {
+      if (err) return console.error(err)
+      // data = Object.values(geo)
+      is_moving = gpsHandler.checkMoving(geo[0].speed)
+      console.log(is_moving)
+      res.status(200).json(is_moving)
     })
 })
 

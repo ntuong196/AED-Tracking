@@ -6,7 +6,7 @@ $(window).on("load", function() {
 
 /* LOADER */
 //////////////////////////////////////////////////////////////////
-var socket = io.connect()
+var socket = io()
 
 /* DASHBOARD CONTROL */
 //////////////////////////////////////////////////////////////////
@@ -61,6 +61,7 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -27.4768784, lng: 153.02841809999998 },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    rotateControl: false,
     zoom: 18
   })
 

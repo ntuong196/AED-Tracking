@@ -32,6 +32,12 @@ io.on("connection", (socket) => {
     socket.id,
     connections.length
   )
+  socket.on("disconnect", function () {
+    connections.splice(connections.indexOf(socket), 1)
+    socket.disconnect()
+    console.log("A User disconnected! %s sockets remaining", connections.length)
+    
+  })
 })
 
 /**
