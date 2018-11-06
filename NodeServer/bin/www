@@ -6,7 +6,7 @@
 
 const app = require("../app")
 const debug = require("debug")("aedtracking:server")
-const http = require("http")
+const https = require("https")
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +19,7 @@ app.set("port", port)
  * Create HTTP server.
  */
 
-const server = http.createServer(app)
+const server = https.createServer(app)
 
 /* Create Socket.io Intance */
 const io = require("socket.io").listen(server)
